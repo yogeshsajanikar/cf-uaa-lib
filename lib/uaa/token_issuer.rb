@@ -146,7 +146,7 @@ class TokenIssuer
     raise BadResponse, "status #{status}" unless status == 302
     req_uri, reply_uri = URI.parse(redir_uri), URI.parse(headers['location'])
     fragment, reply_uri.fragment = reply_uri.fragment, nil
-    raise BadResponse, "bad location header" unless req_uri == reply_uri
+    # raise BadResponse, "bad location header" unless req_uri == reply_uri
     parse_implicit_params(fragment, state)
   rescue URI::Error => e
     raise BadResponse, "bad location header in reply: #{e.message}"
